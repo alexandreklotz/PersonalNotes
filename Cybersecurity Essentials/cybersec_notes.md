@@ -23,6 +23,7 @@ Internal threats have the potential to cause greater damage because an employee 
 **APT** : Advanced Persistent Threat. Continuous attack that was elaborate espionage tactics involving multiple actors and/or sophisticated malware to gain access to and analyze a target's network. Typically target high level orgs.
 
 **Algorithm attacks** : takes advantage of an algorithm in a piece of legitimate software to generate unintended behaviors.
+&nbsp;
 
 #### **Social engineering**
 
@@ -33,6 +34,7 @@ Internal threats have the potential to cause greater damage because an employee 
 
 **Tactics** : 
 Authority, intimidation, consensus, scarcity, urgency, familiarity, trust.
+&nbsp;
 
 #### **Piggybacking/Tailgating**
 
@@ -51,6 +53,8 @@ Two sets of doors is a way to prevent this. Referred to as a mantrap.
 - **Typosquatting** : relies on common mistakes such as typos made by individuals when inputting a website URL in their browser
 - **Prepending** : Removing the EXTERNAL tag used by orgs to warn the recipient that the e,ail is external. Tricks individuals into believing that a malicious email was sent from inside the org.
 - **Influence campaign**
+
+&nbsp;
 
 
 ## **1.3 - Cyber Attacks**
@@ -556,3 +560,16 @@ These services provide the primary framework to control access, preventing unaut
 
 ### **2.4.6 - Federated Identity Management**
 
+Refers to multiple enterprises that let their users use the same identification credentials to gain access to the networks of all enterprises in the group. Unfortunately, this broadens the scope and increases the probability of a cascading effect should an attack occur. The goal of federated identity management is to share identity information automatically across castle boundaries. From the individual user’s perspective, this means a single sign-on to the web.
+
+&nbsp;
+
+### **2.4.7 - Authentication Methods**
+
+- **What you know** : Password, PIN, ...
+- **What you have** : Smart card, keys, ...
+- **What you are** : Fingerprints, ...
+
+&nbsp;
+
+### **2.4.11 - Packet tracer ex**
