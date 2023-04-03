@@ -631,3 +631,65 @@ Other block ciphers include Skipjack (developed by the NSA), Blowfish and Twofis
 &nbsp;
 
 ### **2.5.7 - Asymmetric Encryption Process**
+
+Also called public key encryption, asymmetric encryption uses one key for encryption that is different from the key used for decryption. A criminal cannot calculate the decryption key based on knowledge of the encryption key, and vice versa, in any reasonable amount of time.
+
+&nbsp;
+
+### **2.5.8 - Asymmetric Encryption Algorithms**
+
+Asymmetric algorithms use formulas that anyone can look up. The pair of unrelated keys is what makes these algorithms secure.
+
+- **RSA (Rivest-Shamir-Adleman)** : Uses the product of two very large prime numbers with an equal length of between 100 and 200 digits. Browsers use RSA to establish a secure connection.
+- **Diffie-Hellman** : Provides an electronic exchange method to share the secret key. Secure protocols, such as Secure Sockets Layer (SSL), Transport Layer Security (TLS), Secure Shell (SSH), and Internet Protocol Security (IPSec) use Diffie-Hellman.
+- **ElGamal** : ElGamal uses the US government standard for digital signatures. This algorithm is free for use because no one holds the patent.
+- **Elliptic Curve Cryptography (ECC)** : Uses elliptic curves as part of the algorithm. In the US, the National Security Agency (NSA) uses ECC for digital signature generation and key exchange.
+
+&nbsp;
+
+### **2.5.10 - Key Management**
+
+Key management includes the generation, exchange, storage, use and replacement of keys used in an encryption algorithm.
+It is the most difficult part of designing a cryptosystem. Many cryptosystems have failed because of mistakes in their key management procedures. In practice, most attacks on cryptographic systems target the key management level, rather than the cryptographic algorithm itself.
+There are several essential characteristics of key management to consider :
+- **Symmetric Encryption Algorithm** : 
+    - Best known as shared-secret key algorithms
+    - The usual key length is 80 to 256 bits
+    - A sender and a receiver must share a secret key
+    - Algorithms are usually quite fast (wire speed) because they are based on simple mathematical operations
+    - Examples include 3DES, DES, AES, IDEA, RC2/4/5/6 and Blowfish
+- **Asymmetric Encryption Algorithm** :
+    - Best known as public key algorithms
+    - The usual key length is 512 to 4096 bits
+    - A sender and a receiver do not share a secret key
+    - Algorithms are relatively slow because they are based on difficult computational operations
+    - Examples include RSA, ElGamal, elliptic curves and DH
+
+Two terms used to describe keys are :
+- **Key length** - Also called the key size, this is the length of the key in bits
+- **Keyspace** - This is the number of possibilities that a specific key length can generate.
+
+As key length increases, the keyspace increases exponentially. The keyspace of an algorithm is the set of all possible key values. Longer keys are more secure; however, they are also more resource intensive.
+
+&nbsp;
+
+### **2.5.11 - Comparing Encryption Types**
+
+- Symmetric encryption systems are more efficient and can handle more data. However, key management with symmetric encryption systems is more problematic and harder to manage.
+- Asymmetric cryptography is more efficient at protecting the confidentiality of small amounts of data, and its size and speed make it more secure for tasks such as electronic key exchange, which involves a small amount of data rather than encrypting large blocks of data. It is more complex and requires more resources.
+
+Maintaining confidentiality is important for both data at rest and data in motion. In both cases, symmetric encryption is favored because of its speed and the simplicity of the algorithm. Some asymmetric algorithms can significantly increase the size of the object encrypted. Therefore, in the case of data in motion, public key cryptography should be used to exchange the secret key, and then symmetric cryptography to ensure the confidentiality of the data sent.
+
+&nbsp;
+
+### **Notes**
+
+Common key for encryption and decryption : Symmetric
+Faster and uses less resources : Symmetric
+Key management can become an issue as the number of users increases : Symmetric
+Typically requires a third party key management service : Asymmetric
+Use a public key to encrypt and a private key to decrypt : Asymmetric
+
+&nbsp;
+
+## **2.6 - Hashing**
