@@ -576,3 +576,58 @@ Refers to multiple enterprises that let their users use the same identification 
 
 **What is accountability ?** Accountability traces an action back to a person or process making this change to a system. Accountability then collects this information and reports the usage data. The organization can use this data for such purposes as auditing or billing.
 
+&nbsp;
+
+## **2.5 - Cryptography**
+
+&nbsp;
+
+### **2.5.2 - Creating ciphertext**
+
+Key management is the most difficult part of designing a cryptographic system. Many cryptosystems have failed because of mistakes in their key management, and all modern cryptographic algorithms require key management procedures. In practice, most attacks on cryptographic systems involve attacking the key management system, rather than the cryptographic algorithm itself.
+
+A cipher is a series of well-defined steps used to encrypt and decrypt messages. There are several methods of creating ciphertext :
+- **Start with the plaintext** — the phrase you want to encrypt.
+- **Transposition** — the letters are rearranged.
+- **Substitution** — letters are replaced.
+- **One-time pad** — plaintext combined with a secret key creates a new character, which then combines with the plaintext to produce ciphertext.
+
+&nbsp;
+
+### **2.5.3 - Types of cryptography**
+
+Today, the most common types of cryptography use block ciphers and stream ciphers. Each method differs in the way that it groups bits of data to encrypt it.
+
+**Block ciphers** transform a fixed-length block of plaintext into a common block of ciphertext of 64 or 128 bits. Block size is the amount of data encrypted at any one time. To decrypt this ciphertext, we apply the reverse transformation to the ciphertext block, using the same secret key. Block ciphers usually result in output data that is larger than the input data, because the ciphertext must be a multiple of the block size. For example, Data Encryption Standard (DES) is a symmetric algorithm that encrypts blocks in 64-bit chunks using a 56-bit key. To accomplish this, the block algorithm takes data one chunk at a time — for example, 8 bytes per chunk — until the entire block is full. If there is less input data than one full block, the algorithm adds artificial data, or blanks, until it uses the full 64 bits
+
+**Stream ciphers** encrypt plaintext one byte or one bit at a time. Think of stream ciphers as a block cipher with a block size of one bit. With a stream cipher, the transformation of these smaller plaintext units varies, depending on when they are encountered during the encryption process. Stream ciphers can be much faster than block ciphers, and generally do not increase the size of the message being encrypted, because they can encrypt an arbitrary number of bits. For instance, A5 is a stream cipher that provides voice privacy and encrypts cell phone communications. It is also possible to use DES in stream cipher mode. Complex cryptographic systems can combine block and stream in the same process.
+
+&nbsp;
+
+### **2.5.4 - The Two Encryption Approaches**
+
+The first is to protect the algorithm. If the security of an encryption system depends on the secrecy of the algorithm itself, the most important protection is to guard the algorithm at all costs. Every time someone found out the details of the algorithm, every party involved would need to change the algorithm. That approach does not sound very secure or manageable.
+
+The second approach is to protect the keys. In modern cryptography, the algorithms are public. It is the cryptographic keys that ensure the secrecy of the data.
+
+**Symmetric encryption** : Used the same pre-shared key, sometimes called a secret key pair to encrypt and decrypt data. Both the sender and recipient know the key before any encrypted communication begins.
+
+**Asymmetric encryption** : Uses one key to encrypt and one to decrypt. One is public and the other is private. In a public-key encryption system, any person can encrypt a message using the public key of the receiver and the receiver is the only one that can decrypt it using their private key. Parties exchange secure messages without needing a pre-shared key.
+
+&nbsp;
+
+### **2.5.6 - Symmetric Encryption Algorithms**
+
+- **3DES** : Digital Encryption Standard (DES) is a symmetric block cipher with 64-bit block size that uses a 56-bit key. It takes a 64-bit block of plaintext as input and outputs a 64-bit block of ciphertext. It always operates on blocks of equal size and it uses both permutations and substitutions in the algorithm. Triple DES encrypts data three times and uses a different key for at least one of the three passes, giving it a cumulative key size of 112 to 168 bits. 3DES is more resistant to attack, but it is much slower than DES.
+The encryption cycle is as follows : 
+    - Data encrypted by first DES
+    - Data decrypted by second DES
+    - Data re-encrypted by third DES
+- **IDEA** : The International Data Encryption Algorithm (IDEA) uses 64-bit blocks and 128-bit keys. IDEA performs eight rounds of transformations on each of the 16 blocks that results from dividing each 64-bit block. IDEA was the replacement for DES, and now PGP (Pretty Good Privacy) uses it. PGP is an encryption program that provides privacy and authentication in data communication. GNU Privacy Guard (GnuPG) is a licensed, free version of PGP.
+- **AES** : The Advanced Encryption Standard (AES) has a fixed block size of 128 bits with a key size of 128, 192, or 256 bits. The National Institute of Standards and Technology (NIST) approved the AES algorithm in December 2001. The U.S. government uses AES to protect classified information. AES is a strong algorithm that uses longer key lengths. AES is faster than DES and 3DES, so it provides both a solution for software applications as well as hardware use in firewalls and routers.
+
+Other block ciphers include Skipjack (developed by the NSA), Blowfish and Twofish.
+
+&nbsp;
+
+### **2.5.7 - Asymmetric Encryption Process**
