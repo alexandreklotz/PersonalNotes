@@ -572,4 +572,7 @@ Refers to multiple enterprises that let their users use the same identification 
 
 &nbsp;
 
-### **2.4.11 - Packet tracer ex**
+### **2.4.12 - Implementing Accountability**
+
+**What is accountability ?** Accountability traces an action back to a person or process making this change to a system. Accountability then collects this information and reports the usage data. The organization can use this data for such purposes as auditing or billing.
+
