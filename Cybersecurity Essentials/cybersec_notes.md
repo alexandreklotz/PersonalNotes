@@ -693,3 +693,187 @@ Use a public key to encrypt and a private key to decrypt : Asymmetric
 &nbsp;
 
 ## **2.6 - Hashing**
+
+&nbsp;
+
+### **2.6.1 - What is hashing ?**
+
+Hash functions are one-way functions used to verify and ensure data integrity. A hash tool can also verify authentication. It works by using a cryptographic hashing function to replace clear text passwords or encryption keys. If a password is hashed with a specific hashing algorithm, it will always result in the same hash digest. It is considered one-way because with hash functions, it is computationally infeasible for two different sets of data to come up with the same hash digest or output.
+Every time the data changes, the hash value also changes. As a result, cryptographic hash values are often called digital fingerprints.
+
+&nbsp;
+
+### **2.6.2 - Hashing properties**
+
+The one-way mathematical function of hashing is relatively easy to compute, but significantly harder to reverse. Grinding coffee is a good analogy for one-way functions: it is easy to grind coffee beans, but it is impossible to put all the tiny pieces back together to rebuild the original beans.
+A cryptographic hash function has the following properties :
+- The input can be any length.
+- The output has a fixed length.
+- The hash function is one-way and is not reversible.
+- Two different input values will almost never result in the same hash.
+
+&nbsp;
+
+### **2.6.3 - Hashing algorithms**
+
+Hash functions help to ensure that a user or communication error does not change data accidentally.
+
+**ASCII code - character to binary** : The 8-bit checksum is the simplest form of a hash function. It calculates the hash by converting the message into binary numbers.
+
+**Simple hash algorithm** : The algorithm adds up the 8-bit values and calculates the result using a process called 2’s complement. This process transforms a binary to its opposite value — zero converts to one, and one converts to zero. The final step of the process is to add 1 to produce an 8-bit checksum.
+
+&nbsp;
+
+### **2.6.4 - Modern hashing algorithms**
+
+Many used today but most populars are MD5 and SHA.
+
+**Message digest 5 (MD5) algorithm** : MD5 is a one-way function that makes it easy to compute a hash from the given input data but makes it very difficult to compute input data from a hash value. MD5 produces a 128-bit hash value.
+
+**Secure Hash Algorithm (SHA)** : The U.S. National Institute of Standards and Technology (NIST) developed SHA, the algorithm specified in the Secure Hash Standard (SHS). NIST published SHA-1 in 1994. SHA-2 replaced SHA-1 with four additional hash functions to make up the SHA family:
+- SHA-224 (224 bit)
+- SHA-256 (256 bit)
+- SHA-384 (384 bit)
+- SHA-512 (512 bit)
+
+SHA-2 is a stronger algorithm, and it is replacing MD5. SHA-256, SHA-384 and SHA-512 are the next-generation algorithms.
+
+&nbsp;
+
+### **2.6.5 - Hashing Files and Digital Media**
+
+The field of digital forensics uses hashing to verify all digital media that contains files. For example, the examiner creates a hash and a bit-for-bit copy of the media containing the files to produce a digital clone. The examiner compares the hash of the original media with the copy. If the two values match, the copies are identical. The fact that one set of bits is identical to the original set of bits establishes fixity.
+
+&nbsp;
+
+### **2.6.10 - Salting**
+
+Salting makes password hashing more secure. If two users have the same password, they will also have the same password hashes. A salt, which is a random string of characters, is an additional input added to the password before hashing. This creates a different hash result even when the two passwords are identical, as shown here. Then, the database stores both the hash and the salt. The same password generates a different hash for different users, because the salt in each instance is different. Meanwhile, the salt does not have to be secret since it is a random number.
+
+&nbsp;
+
+### **2.6.11 - Implementing salting**
+
+A cryptographically secure pseudo-random number generator (CSPRNG) is the best way to generate salt. CSPRNGs generate a random number that has a high level of randomness and is completely unpredictable, so it is cryptographically secure.
+The following recommendations will help ensure successful implementation of salting :
+- The salt needs to be unique for every user password / Never reuse a salt
+- The length of the salt should match the length of the hash function’s output.
+- Always hash on the server, in a web application.
+
+Using a technique called **key stretching** will also help to protect against attack. Key stretching makes attempts to figure out passwords work very slowly. This makes high-end attacker hardware that can attempt to crack billions of hashes per second less effective.
+
+&nbsp;
+
+### **2.6.12 - Preventing attacks**
+
+Salting prevents an attacker from using a dictionary attack to try to guess passwords. Salting also makes it impossible to use lookup tables and rainbow tables to crack a hash.
+- **Lookup tables** : A lookup table stores the pre-computed hashes of passwords in a password dictionary, along with the corresponding password. A lookup table is a data structure that processes hundreds of hash lookups per second.
+- **Reverse lookup tables** : This attack allows the cybercriminal to launch a dictionary or brute-force attack on many hashes without the pre-computed lookup table. The cybercriminal creates a lookup table that plots each password hash from the breached account database to a list of users. The cybercriminal hashes each password guess and uses the lookup table to get a list of users whose password matched the cybercriminal’s guess. Since many users have the same password, the attack works well.
+- **Rainbow tables** : Rainbow tables sacrifice hash-cracking speed to make the lookup tables smaller. A smaller table means that the table can store the solutions to more hashes in the same amount of space.
+
+&nbsp;
+
+### **2.6.12 - What is an HMAC operaion ?**
+
+The next step in preventing a cybercriminal from launching a dictionary or brute-force attack on a hash is to add a secret key to the hash. Only the person who knows the hash can validate a password. One way to do this is to include the secret key in the hash using a hash algorithm called keyed-hash message authentication code (HMAC or KHMAC).
+
+&nbsp;
+
+## **2.7 - Obscuring Data**
+
+&nbsp;
+
+### **2.7.1 - Data Masking Techniques**
+
+Data masking technology secures data by replacing sensitive information with non-sensitive versions of it. The non-sensitive version looks and acts like the original so that an organizational process can use non-sensitive data with no change needed to the supporting applications or data storage facilities.
+Masking most commonly limits the propagation of sensitive data within IT systems by distributing surrogate data sets for testing and analysis. Information can be dynamically masked on the spot if the system or application detects a risky user request for sensitive information.
+Several data masking techniques can be used :
+- **Substitution** : replaces data with authentic-looking values to apply anonymity to the data records
+- **Shuffling** : derives a substitution set from the same column of data that a user wants to mask. This technique works well for financial information in a test database, for example.
+- **Nulling out** : applies a null value to a particular field, which completely prevents visibility of the data.
+
+&nbsp;
+
+### **2.7.2 - Steganography**
+
+Steganography conceals data — e.g. a message — in another file such as a graphic, audio or video file. The advantage of steganography over cryptography is that the secret message does not attract any special attention. There are several components involved in hiding data. First, there is the embedded data, which is the secret message. The cover-text (or cover-image or cover-audio) hides the embedded data producing the stego text (or stego image or stego audio). A stego key controls the hiding process.
+
+**Steganography techniques**
+
+The approach used to embed data in a cover-image is using least significant bits (LSB). This method uses bits of each pixel in the image.
+- A pixel is the basic unit of programmable color in a computer image.
+- The specific color of each pixel is a blend of three colors; red, green and blue (RGB).
+- Three bytes of data specify a pixel’s color (one byte for each color). Eight bits make up a byte so a 24-bit color system uses all three bytes.
+- LSB uses a bit of each of the red, green and blue color components. Each pixel can store three bits.
+
+On average, no more than half of the bits in an image will need to change to hide a secret message effectively.
+
+**Social steganography**
+
+Social steganography hides information in plain sight by creating output that can be read a certain way by some to get the secret message, based on previously set rules and/or definitions.
+
+**Detection**
+
+Steganalysis follows the discovery that hidden information exists. The goal of steganalysis is to discover this hidden information. Patterns in the stego image create suspicion. For example, a disk may have unused yet reserved areas, which are reserved because they hide information. Disk analysis utilities can report on hidden information in unused clusters of storage devices. Filters can capture data packets that contain hidden information in packet headers. Both of these methods use steganography signatures.
+
+&nbsp;
+
+### **2.7.3 - Packet Tracer**
+
+**TODO**
+
+&nbsp;
+
+# **3 - System and Network Defense**
+
+&nbsp;
+
+## **3.1 - Defending Systems and Devices**
+
+&nbsp;
+
+### **3.1.4 - Patch Management**
+
+**What are patches ?** Patches are code updates that prevent a new virus, worm or other malware from making a successful attack. Patches and upgrades are often combined into a service pack. 
+
+&nbsp;
+
+### **3.1.5 - Endpoint Security**
+
+A host-based solution is a software application that runs on a local device (or endpoint) to protect it. The software works with the operating system to help prevent attacks.
+- **Host-based firewalls** : A host-based firewall runs on a device to restrict incoming and outgoing network activity for that device. It can allow or deny traffic between the device and the network. The software firewall inspects and filters data packets to protect the device from becoming infected. Windows Firewall, installed by default during Windows installation, is an example of a software firewall.
+- **Host intrusion detection system (HIDS)** : HIDS software is installed on a device or server to monitor suspicious activity. It monitors system calls and file system access to detect malicious requests. It can also monitor configuration information about the device held in the system registry.
+- **Host intrusion prevention system (HIPS)** : HIPS is software that monitors a device for known attacks and anomalies (deviations in bandwidth, protocols and ports), or finds red flags by assessing the actual protocols in packets. If it detects malicious activity, the HIPS tool can send you an alarm, log the malicious activity, reset the connection and/or drop the packets.
+- **Endpoint detection and response (EDR)** : EDR is an integrated security solution that continuously monitors and collects data from an endpoint device. It then analyzes the data and responds to any threats it detects. An antivirus can only block against threats, while EDR can do that and find threats on the device.
+- **Data loss prevention (DLP)** : DLP tools provide a centralized way to ensure that sensitive data is not lost, misused or accessed by unauthorized users.
+- **Next generation firewall (NGFW)** : NGFW is a network security device that combines a traditional firewall with other network-device-filtering functions. For example, an application firewall using in-line deep packet inspection (DPI) on an intrusion protection system (IPS).
+
+&nbsp;
+
+### **3.1.6 - Host encryption**
+
+The Windows Encrypting File System (EFS) feature allows users to encrypt files, folders or an entire hard drive. Full disk encryption (FDE) encrypts the entire contents of a drive (including temporary files and memory). Microsoft Windows uses BitLocker for FDE. To use BitLocker, the user needs to enable Trusted Platform Module (TPM) in the BIOS. The TPM is a specialized chip on the motherboard that stores information about the host system, such as encryption keys, digital certificates and passwords. When enabled, BitLocker can use the TPM chip.
+
+&nbsp;
+
+### **3.1.7 - Boot integrity**
+
+Boot integrity ensures that the system can be trusted and has not been altered while the operating system loads. Firmware — software instructions about basic computer functions — is stored on a small memory chip on the motherboard. The basic input/output system (BIOS) is the first program that runs when you turn on the computer.  Unified Extensible Firmware Interface (UEFI), a newer version of BIOS, defines a standard interface between the operating system, firmware and external devices. A system that uses UEFI is preferred over one that uses BIOS because a UEFI system can run in 64-bit mode.
+
+*How does secure boot works ?*
+
+Secure Boot is a security standard to ensure that a device boots using trusted software. When a computer system boots, the firmware checks the signature of each piece of boot software, including UEFI firmware drivers, UEFI applications and the operating system. If the signatures are valid, the system boots, and the firmware gives control to the operating system.
+
+&nbsp;
+
+### **3.1.8 - Physical protection of devices**
+
+- **Computer equipment** : Use cable locks, keep telecommunications rooms locked, use security cages (faraday cages) around equipment to block electromagnetic fields.
+- **Door locks** : A standard keyed entry lock is the most common type of door lock. They are often easy to force open. A deadbolt lock can be added for extra security. Any lock that requires a key is vulnerable if the keys are lost, stolen or duplicated. A cipher lock uses buttons that are pressed in a given sequence to open the door. It can be programmed so that a user’s code may only work during certain days or times. It can also keep a record of when the door opened, and the code used to open it.
+- **Radio frequency identification (RFID) systems** : RFID uses radio waves to identify and track objects. RFID tags can be attached to any item that an organization wants to track. The tags contain an integrated circuit that connects to an antenna. RFID tags are small and require very little power, so they do not need a battery to exchange information with a reader. RFID can help automate asset tracking, or wirelessly lock, unlock or configure electronic devices.
+
+&nbsp;
+
+### **3.1.10 - Harden a linux system (ex)**
+
+**TODO**
