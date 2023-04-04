@@ -820,7 +820,7 @@ Steganalysis follows the discovery that hidden information exists. The goal of s
 
 ### **2.7.3 - Packet Tracer**
 
-**TODO**
+steghide tool for steganography
 
 &nbsp;
 
@@ -876,4 +876,48 @@ Secure Boot is a security standard to ensure that a device boots using trusted s
 
 ### **3.1.10 - Harden a linux system (ex)**
 
-**TODO**
+Lynis for system auditing.
+iptables is the firewall installed by default on ubuntu.
+
+&nbsp;
+
+## **3.2 - Application Security**
+
+&nbsp;
+
+### **3.2.1 - Application development**
+
+To maintain security at all stages of application development, a robust process needs to be followed :
+- **Developing and testing** : Software is developed and updated in a development environment, where it can be developed, tested and debugged before being deployed. A development environment is less restrictive than the live environment and has a lower security level. Version control software helps track and manage changes to the software code. During testing, developers look at how the code interacts with the normal environment.
+- **Staging and production** : Staging environments should closely match the organization’s production environment. By testing in a staging environment, developers can verify that the software runs under the required security settings. After the developer runs and tests security, the program can be deployed to production.
+- **Provisioning and deprovisioning** : Provisioning is the creation or updating of software. Deprovisioning is its removal. An organization can use a self-service portal to automate software provisioning and deprovisioning.
+
+&nbsp;
+
+### **3.2.2 - Security Coding Techniques**
+
+Developers use several techniques to validate that all security requirements have been met :
+- **Normalization** : used to organize data in a database and help maintain data integrity. Converts an input string to its simplest known form to ensure that all strings have unique binary representation and that any malicious input is identified.
+- **Stored procedure** : group of precompiled SQL statements stored in a database that execute a task. If you use a stored procedure to accept input parameters from clients using different input data, you will reduce network traffic and get faster results.
+- **Obfuscation and camouflage** : Prevents software from being reverse-engineered. Obfuscation hides original data with random characters or data. Camouflage replaces sensitive data with realistic fictional data.
+- **Code reuse** : means using existing software to build new software, saving time and development costs. Care must be taken, though, to avoid the introduction of vulnerabilities.
+- **SDKs** : Third-party libraries and software development kits (SDKs) provide a repository of useful code to make application development faster and cheaper. The downside is that any vulnerabilities in SDKs or third-party libraries can potentially affect many applications.
+
+&nbsp;
+
+### **3.2.3 - Input validation**
+
+Input validation is key to maintaining a database integrity. Many attacks run against a database and insert malformed data. Hackers can automate such kind of attacks to flood a web application.
+
+&nbsp;
+
+### **3.2.4 - Validation rules**
+
+Validation rules can help ensure the security of databases by checking to see if data meets certain rules when entered into a field. A validation rule checks that data falls within the parameters defined by the database designer. This helps to ensure the completeness, accuracy and consistency of data.
+The criteria used in a validation rule include the following:
+
+- **Size** : checks the number of characters in a data item.
+- **Format** : checks that the data conforms to a specified format.
+- **Consistency** : checks for the consistency of code in related data items.
+- **Range** : checks that data lies within a minimum and maximum value.
+- **Check digit** : provides for an extra calculation to generate a check digit for error detection.
