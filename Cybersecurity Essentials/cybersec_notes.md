@@ -51,7 +51,7 @@ Two sets of doors is a way to prevent this. Referred to as a mantrap.
 - **Invoice scam**
 - **Watering hole attack** : describes an exploit in which an attacker observes or guesses what websites an org uses most often and infects one of them.
 - **Typosquatting** : relies on common mistakes such as typos made by individuals when inputting a website URL in their browser
-- **Prepending** : Removing the EXTERNAL tag used by orgs to warn the recipient that the e,ail is external. Tricks individuals into believing that a malicious email was sent from inside the org.
+- **Prepending** : Removing the EXTERNAL tag used by orgs to warn the recipient that the email is external. Tricks individuals into believing that a malicious email was sent from inside the org.
 - **Influence campaign**
 
 &nbsp;
@@ -921,3 +921,160 @@ The criteria used in a validation rule include the following:
 - **Consistency** : checks for the consistency of code in related data items.
 - **Range** : checks that data lies within a minimum and maximum value.
 - **Check digit** : provides for an extra calculation to generate a check digit for error detection.
+
+&nbsp;
+
+### **3.2.5 - Integrity checks**
+
+Compromised data can threaten the security of your devices and systems. The integrity check performs a **hash function**. A checksum is an example of a hash function.
+
+**How a checksum works ?** : A checksum verifies the integrity of files, or strings of characters, before and after they transfer between devices across a local network or the Internet. Checksums convert each piece of information to a value and sum the total. To test the data integrity, a receiving system repeats the process. If the two sums are equal, the data is valid.
+
+**Hash functions** : *See chapter 2.6*
+
+**Version control** : Organizations use version control to prevent authorized users from making accidental changes. Version control means that two users cannot update the same object, such as a file, database record or transaction, at the exact same time.
+
+**Backups** : Accurate backups help to maintain data integrity if data becomes corrupted.
+
+**Authorization**
+
+&nbsp;
+
+### **3.2.6 - Other application security practices**
+
+**Code signing** : proves that a piece of software is authentic. 
+
+**Secure cookies** : Using secure cookies protects information stored in cookies from hackers. When your client system interacts with a server, the server sends a HTTP response that instructs your browser to create at least one cookie. The cookie then stores data for future requests while you are browsing that website. Web developers should use cookies with HTTPS, to secure cookies and prevent them from being transmitted over unencrypted HTTP.
+
+&nbsp;
+
+### **3.2.7 - Managing threats to applications**
+
+Organizations can implement various measures to manage threats to the application domain.
+- Unauthorized access to data centers, computers rooms and wiring closets
+- Server and system downtime
+- Network operating system software vulnerability
+- Unauthorized access to systems
+- Data loss
+- Software development vulnerabilities
+
+&nbsp;
+
+## **3.3 - Network hardening : services and protocols**
+
+&nbsp;
+
+### **3.3.1 - Network and routing services**
+
+- **DHCP** : Attackers can target DHCP servers to deny access to devices on the network, but security measures like DHCP snooping prevent rogue DHCP servers from providing IP addresses to clients by validating messages from sources that are not trusted. Ensure that the DHCP is physically secure, up to date, patched, unused ports are closed, logging, etc...
+- **DNS** : Attackers can target DNS servers to deny access to network resources or redirect traffic to rogue websites. To secure it, prevent version string from revealing information, separate internal and external DNS, restrict allowed transactions by client IP addr, use transaction signatures, disable or restrict zone transfers and dynamic updates as much as possible, logging, use domain name system security extensions (DNSSEC), sign zones.
+- **ICMP** : Cybercriminals can alter the use of ICMP to run reconnaissance, denial of service (DoS) and covert channel attacks. Many networks filter ICMP requests to prevent such attacks.
+- **Routing information protocol (RIP)** : RIP is a routing protocol that limits the number of hops from source to destination that are allowed in a network path. The maximum number of hops allowed for RIP is fifteen. RIP is used to exchange routing information about which networks each router can reach and how far away those networks are. RIP calculates the best route based on hop count, but cybercriminals can also target routers and the RIP protocol. Such attacks on routing services can affect performance and availability, some attacks can even result in traffic redirection. Use secure services with authentication and implement system patching and updates to protect routing services.
+- **NTP** : Cybercriminals attack timeservers to disrupt secure communication that depends on digital certificates and to hide attack information. Use NTP Authentication to verify that the server is trusted.
+
+&nbsp;
+
+### **3.3.2 - Telnet, SSH and SCP**
+
+SSH uses port 22.
+
+Secure Copy (SCP) securely transfers files between two remote systems. SCP uses SSH for data transfer and authentication, ensuring the authenticity and confidentiality of the data in transit.
+
+&nbsp;
+
+### **3.3.3 - Secure protocols**
+
+- **Simple Network Management Protocol (SNMP)** : SNMP collects statistics from TCP/IP devices to monitor network and computer equipment. SNMPv3 is the current standard — it uses cryptography to prevent eavesdropping and make sure data hasn’t been tampered with while in transit.
+- **HTTP** : Limited built-in security, can be made more secure with the use of other protocols :
+    - **Secure Sockets Layer (SSL)** manages encryption by using an SSL handshake at the beginning of a session to provide confidentiality.
+    - **TLS** prevents eavesdropping and tampering
+    - SSL/TLS encrypts communication between the client and the server. Where it’s used, the user will see **HTTPS** in the URL field of a browser instead of HTTP.
+- **FTP** : uses plaintext username/password. **FTPS** is more secure — it adds support for TLS and SSL to prevent eavesdropping, tampering and forgery on exchanged messages.
+- **POP, IMAP and MIME** : Email uses Post Office Protocol (POP), Internet Message Access Protocol (IMAP) and Multipurpose Internet Mail Extensions (MIME) to attach non-text data, such as an image or video, to an email message. To secure POP (port 110) or IMAP (port 143), use SSL/TLS to encrypt mail during transmission. The Secure/Multipurpose Internet Mail Extensions (S/MIME) protocol provides a secure method of transmission. It sends digitally signed and encrypted messages that provide authentication, message integrity and nonrepudiation.
+
+&nbsp;
+
+## **3.4 - Network hardening : Securing network devices**
+
+&nbsp;
+
+### **3.4.1 - Switches, routers and network appliances**
+
+Network switches are subject to ARP/STP attacks. Other protocols can be attacked too. Firewalls are subject to ACLs attacks. Routers are subject to routing protocols attacks.
+
+A UTM can be connected to the main network to provide maximum security against all incoming viruses. A UTM appliance carries out a diverse range of functions. It:
+- Balances the load in a network.
+- Prevents data leaks that might occur.
+- Provides a gateway antivirus solution.
+- Provides network intrusion prevention and on-appliance reporting.
+
+Multiple types of firewalls : 
+
+- A **stateless firewall** provides basic traffic filtering capabilities using access control lists (ACLs). Administrators use ACLs to stop traffic or permit only specified traffic on their networks. An ACL is a sequential list of permit or deny statements that apply to addresses or protocols.
+- A **stateful firewall** inspects traffic leaving the network and monitors the establishment of a stateful connection. Traffic associated with the established (stateful) connection is then permitted.
+- A **content-filtering firewall** works by specifying content patterns (text strings or objects within images) that, if matched, indicate undesirable content that is to be screened out. 
+- A **web application firewall (WAF)** filters, monitors and blocks HTTP traffic to and from a web service.
+- A **next-generation firewall (NGFW)** combines a traditional firewall with other network device filtering functions, such as an application firewall using in-line deep packet inspection to examine the actual data within the packets transmitted.
+
+&nbsp;
+
+### **3.4.3 - Intrusion detection systems**
+
+An IDS monitors the traffic on a network to identify threats. An IDS-enabled device copies network traffic and analyzes the copy rather than the actual forwarded packets.
+
+*How does an IDS work ?*
+
+Working offline, compares network traffic with known malicious signatures.
+- Works passively
+- Physically positioned in the network so that traffic must be mirrored to reach it
+- Network traffic doesn't reach the IDS, only copies of it that are mirrored.
+
+An IDS is passive and operates in promiscuous mode, meaning it monitors and reports on traffic but does not take any action. 
+
+*Advantages of an IDS*
+
+The advantage of operating with a copy of the traffic is that the IDS does not negatively affect the packet flow of the forwarded traffic.
+
+*Disadvantages of an IDS*
+
+The disadvantage of operating on a copy of the traffic is that the IDS cannot stop malicious single-packet attacks from reaching their target before it responds to the threat. An IDS often requires assistance from other networking devices, such as routers and firewalls, to respond to an attack.
+
+&nbsp;
+
+### **3.4.4 - Intrusion prevention systems**
+
+An IPS builds on IDS technology but works inline, within the data stream. This means that all traffic must flow through it for processing. Unlike IDS, an IPS does not allow packets to enter the trusted side of the network unless it has analyzed them first. An IPS can detect and immediately address a network problem.
+
+*How does an IPS work ?*
+
+An IPS monitors network traffic and analyzes packets for malicious activities. Some systems use a blend of detection technologies, including signature-based, profile-based and protocol analysis-based intrusion detection. This deeper analysis enables the IPS to identify, stop and block attacks that would have passed through a traditional firewall. When a packet comes through an interface on an IPS, the outbound or trusted interface does not receive that packet until the IPS analyzes it and signals it can go through.
+
+*Advantages of an IPS*
+
+The advantage of operating in inline mode is that the IPS can stop single-packet attacks from reaching the target system.
+
+*Disadvantages of an IPS*
+
+The disadvantage of this technology is that a poorly configured IPS can negatively affect the packet flow of the forwarded traffic.
+
+&nbsp;
+
+### **3.4.5 - NetFlow and IPFIX**
+
+NetFlow is a Cisco IOS technology that provides statistics on packets flowing through a Cisco router or multilayer switch. NetFlow is the standard for collecting operational data from networks. The Internet Engineering Task Force (IETF) used Cisco’s NetFlow Version 9 as the basis for IP Flow Information Export (IPFIX).
+
+IPFIX is a standard format for exporting router-based information about network traffic flows to data collection devices. IPFIX works on routers and management applications that support the protocol.
+
+Collecting, storing and analyzing information from IPFIX-supported devices helps:
+- Secure the network against internal and external threats.
+- Troubleshoot network failures quickly and precisely.
+- Analyze network flows for capacity planning.
+
+&nbsp;
+
+### **3.4.6 - Network access control**
+
+Network Access Control (NAC) is a networking solution that protects a private network from unauthorized users and devices. NAC only allows authorized users with security-compliant systems to access the network. For example, a laptop that is part of a home wireless network may not be allowed to connect remotely to the office network. A NAC framework can use the existing network infrastructure and third-party software to enforce security-policy compliance for all devices. A NAC appliance controls network access, evaluates compliance and enforces security policy. A common NAC systems checklist includes:
+- Updated virus detection.
+- Operating systems patches and updates.
+- Complex password enforcement.
