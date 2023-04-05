@@ -1078,3 +1078,29 @@ Network Access Control (NAC) is a networking solution that protects a private ne
 - Updated virus detection.
 - Operating systems patches and updates.
 - Complex password enforcement.
+
+&nbsp;
+
+### **3.5.1 - VPN architecture**
+
+Protocols must ensure that no third party can affect VPN security. L2TP is an older protocol and doesn’t provide encryption for data that is tunneled. It has been replaced by IPSec and SSL/TLS VPNs.
+
+&nbsp;
+
+### **3.5.2 - IPSec**
+
+VPNs use IPsec, a suite of protocols developed to achieve secure services over networks. IPsec services allow for authentication, integrity, access control and confidentiality. With IPsec, remote sites can exchange encrypted and verified information.
+There are two security protocols from which to choose :
+- **AH** provides authentication and integrity by hashing the IP header and data payload.
+- **ESP** provides confidentiality by encrypting the entire data payload. ESP also provides authentication and integrity.
+
+*(graphical representation of how it works can be found online in this chapter in the course)*
+
+&nbsp;
+
+### **3.5.3 - VPN solution**
+
+- **Full tunnel VPN**
+- **Split tunnel VPN**
+- **Remote access** : Another option is an HTML5-based solution for remote access, which uses a web browser as a client — it does not require Java or any other plug-in to work.
+
