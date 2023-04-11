@@ -2,7 +2,7 @@
 
 &nbsp;
 
-
+---
 # **1 - Threats Vulnerabilities and Attacks**
 &nbsp;
 
@@ -296,9 +296,9 @@ Attackers often find ways to intercept these supply chains. For example, softwar
 - **Cloud based attacks** : Attackers are constantly leveraging ways to exploit sensitive data stored on the cloud, as well as applications, platforms and infrastructure that is cloud-based, as we saw with SaaS, PaaS and IaaS.
 
 
----
-&nbsp;
 
+&nbsp;
+---
 # **2 - Principles, Practices and Processes**
 
 &nbsp;
@@ -823,7 +823,7 @@ Steganalysis follows the discovery that hidden information exists. The goal of s
 steghide tool for steganography
 
 &nbsp;
-
+---
 # **3 - System and Network Defense**
 
 &nbsp;
@@ -1104,3 +1104,218 @@ There are two security protocols from which to choose :
 - **Split tunnel VPN**
 - **Remote access** : Another option is an HTML5-based solution for remote access, which uses a web browser as a client — it does not require Java or any other plug-in to work.
 
+&nbsp;
+
+## **3.6 - Network Hardening : Segmentation**
+
+&nbsp;
+
+### **3.6.1 - VLANs**
+
+Ports can be used to physically interconnect switches and allow multiple VLAN traffic between switches. These ports are called trunks.
+
+&nbsp;
+
+### **3.6.2 - DMZ (Demilitarized Zone)**
+
+A demilitarized zone (DMZ) is a small network between a trusted private network and the Internet.
+- **Access to untrusted networks** : Web servers and mail servers are usually placed within the DMZ to allow users to access an untrusted network, such as the Internet, without compromising the internal network.
+- **Zones of risk** : Most networks have two to four zones of risk: the trusted private LAN, the DMZ, the Internet and an extranet.
+    - Within the LAN, the risk level is low and the trust level is high
+    - Within the extranet zone, the risk-level is medium-low and the trust level is medium-high
+    - Within the DMZ, the risk-level is medium-high and the trust level is medium-low
+    - Within the internet zone, the risk-level is high and the trust level is low
+- **Zero trust model** : Firewalls manage east-west traffic (traffic that goes between servers within the organization’s data center) and north-south traffic (data moving into and out of the organization’s network). To protect its network, an organization can implement a Zero Trust model. Automatically trusting users and endpoints within the organization can put any network at risk, as trusted users can move throughout the network to access data. Zero Trust networking constantly monitors all users on the network regardless of their status or role.
+
+&nbsp;
+
+### **3.6.3 - Managing threats to the lan**
+
+Organizations can implement the following countermeasures to manage threats to their LAN:
+
+- **Unauthorized LAN access** : Secure wiring closets, data centers and computer rooms. Deny access to anyone without the proper credentials.
+- **Unauthorized access to systems, applications and data** : Define strict access control policies, standards, procedures and guidelines.
+- **Network operating system software vulnerabilities** : Implement policy to patch and update operating systems.
+- **Unauthorized access by rogue users** : Require passphrases or authentication for wireless networks.
+- **Exploits of data in transit** : Implement encryption between devices and wireless networks.
+- **Unauthorized network probing and port scanning** : Conduct post-configuration penetration tests.
+
+&nbsp;
+
+## **3.7 - Hardening wireless and mobile devices**
+
+&nbsp;
+
+### **3.7.1 - Wireless device security**
+
+Wired Equivalent Privacy (WEP) was the first security protocol used for wireless networks. This was replaced by Wi-Fi Protected Access (WPA), which improved the security of wireless connections.
+
+- **WPA Configuration** : Wi-Fi Protected Access (WPA) was the computer industry’s response to the weaknesses of the WEP standard. WPA-PSK (Pre-Shared Key) is the most common WPA configuration. The keys used by WPA are 256-bit, a significant increase over the 64-bit and 128-bit keys used in the WEP system.
+- **WPA Features** : The WPA standard provided several security improvements. First, WPA provided message integrity checks (MIC), which could detect if an attacker had captured and altered data passed between the wireless access point and a wireless client. Another key security enhancement was Temporal Key Integrity Protocol (TKIP). The TKIP standard helped to better handle, protect and change encryption keys. Advanced Encryption Standard (AES) superseded TKIP, for even better key management and encryption protection.
+- **WPA2** : The Wi-Fi Protected Access II (WPA2) standard was released in 2006. This introduced the mandatory use of AES algorithms and replaced TKIP with the Counter Cipher Mode with Block Chaining Message Authentication Code Protocol (CCMP).
+- **WPA3** : WPA3 added more features to WPA2 such as maintaining strong cryptographic algorithms and improving key exchange.
+- **Wi-Fi Protected Setup (WPS)** : Wi-Fi Protected Setup (WPS) can be used to set up a secure wireless home network. A PIN code is used to connect devices to the wireless network. However, WPS poses a major security vulnerability, as the user’s PIN can be discovered through brute-force attack. Due to this, WPS should not be used and should be disabled altogether.
+
+&nbsp;
+
+### **3.7.3 - Authentication**
+
+Wireless devices are open to theft, hacking and unauthorized remote access, sniffing, man-in-the-middle attacks, as well as attacks against performance and availability. The best way to secure a wireless network is to use authentication and encryption. The original wireless standard, 801.11, introduced two types of authentication.
+
+- **Open system authentication** : Any wireless device can connect to the wireless network. Use this method in situations where security is of no concern.
+- **Shared key authentication** : Provides mechanisms to authenticate and encrypt data between a wireless client and AP or wireless router.
+
+&nbsp;
+
+### **3.7.4 - Authentication protocols**
+
+The Extensible Authentication Protocol (EAP) is an authentication framework used in wireless networks. Let’s find out how it works.
+1. The user requests to connect to the wireless network through an access point.
+2. The access point requests identification data (username) from the user, which is then sent to an authentication server.
+3. The authentication server requests proof that the ID is valid.
+4. The access point requests proof that the ID is valid from the user, in the form of a password.
+5. The user supplies the access point with their password. The access point sends this back to the authentication server.
+6. The server confirms the username and password are correct, and passes this information on to the access point and user.
+7. The user connects to the wireless network.
+
+Four protocols used with EAP to provide authentication for wireless networks :
+
+|Protocol |Client certificate |Server certificate |Deployment difficulty |Security |
+|:--------|:------------------|:------------------|:---------------------|:--------|
+|**EAP-TLS**|Yes |Yes |Difficult |High|
+|**PEAP**|No |Yes |Moderate |Medium|
+|**EAP-TTLS**|No |Yes |Moderate |Medium|
+|**EAP-FAST**|No |No |Easy |Medium|
+
+&nbsp;
+
+*It’s best to use WPA2 with EAP authentication to secure the wireless device. Using this approach, you can define a unique username/password combination (or deploy unique client certificates) for each user on the wireless network. If a user leaves the organization, their wireless access can be dropped by deleting their credentials from the authentication system.*
+
+&nbsp;
+
+### **3.7.6 - Mutual authentication**
+
+Your wireless network and its sensitive data are susceptible to unauthorized access by hackers using a wireless connection. But what can you do to prevent an attack?
+
+**Rogue access points** : The rogue access point will often imitate an authorized access point, allowing users to connect to the wireless network but potentially stealing their data or conducting other nefarious activity in the process. 
+
+**Preventing attacks** : Mutual authentication is two-way authentication that can prevent rogue access points. It is a process in which both entities in a communications link authenticate each other before they connect. This enables clients to detect rogue access points and prevent such MitM attacks.
+
+&nbsp;
+
+### **3.7.8 - Mobile device management**
+
+A mobile device issued by an organization can contain both personal and organizational data — it can be either corporate-owned or corporate-owned personally enabled (COPE). An organization may also have a bring-your-own-device (BYOD) option. Security and data protection policies need to be applied when there is sensitive corporate information on a user’s device.
+
+- **Storage segmentation and containerization** : Storage segmentation and containerization allow you to separate personal and work content on a device. It provides an authenticated, encrypted area that separates sensitive company information from the user’s personal data. Containerization also enables us to:
+    - Isolate apps
+    - Control app functions
+    - Delete container information
+    - Remotely wipe the device
+
+- **Content management** : An organization needs to consider the security risks involved in using applications that share data — for example, Dropbox, Box, Google Drive and iCloud. An identity-management security system can be used to control what data a user can access.
+
+- **Application management** : Whitelisting allows you to digitally sign applications so that you can authorize which applications users can install. This helps to ensure that installed applications come from a trusted source. Authentication using strong passwords is a best practice for those applications that require user credentials.
+
+&nbsp;
+
+### **3.7.9 - Mobile device protections**
+
+**Jailbreaking, rooting and sideloading** : Jailbreaking, rooting and sideloading are ways of bypassing a device’s limitations to do things that the device is restricted from doing. Users may try to jailbreak (Apple devices) or root (Android devices) their device to run an app that is not authorized or available in the store. Jailbreaking removes the restriction that only Apple-authorized apps may run on the device. Rooting bypasses Android’s security architecture to allow complete, administrative access to the device. Both pose a risk to the organization. Solutions are available that can detect a jailbroken or rooted device. A device is then marked as noncompliant and removed from the network or denied access to organizational apps. Third-party app stores can also pose a risk for organizations because the apps they provide access to have not been evaluated properly. Sideloading occurs when the user goes around the approved app settings to install unapproved apps. This is less invasive than jailbreaking or rooting, but it is still a risk.
+
+*What are the safeguards ?*
+
+- **Screen locks** : password, PIN or pattern.
+- **Biometric authentication**
+- **Context aware authentication** : uses machine learning to determine access based on a user's normal behavior.
+- **Remote wiping**
+- **Full device encryption**
+
+&nbsp;
+
+---
+# **4 - Defending the enterprise**
+
+&nbsp;
+
+## **4.1 - Embedded and specialized systems**
+
+&nbsp;
+
+### **4.1.1 - Threats to key industry sectors**
+
+Supervisory Control And Data Acquisition (SCADA).
+
+Environments that use SCADA are vulnerable. When the SCADA architecture was first being developed, designers did not connect it to the traditional IT environment and the Internet. Therefore, they did not properly consider cybersecurity during the development phase of these systems. The resulting trend is to connect SCADA systems to the wider online IT infrastructure of the organization. This increases the vulnerability of industries using SCADA systems. To prevent attacks on these systems, you should segregate internal and external networks to separate the SCADA network from the organization’s LAN.
+
+&nbsp;
+
+### **4.1.3 - Embedded systems**
+
+Embedded systems capture, store and access data. They pose unique security challenges due to their widespread adoption by both the corporate and the consumer world. They are used in smart TVs, HVAC control systems, medical devices and even automobiles.
+
+Attacks against embedded systems exploit security vulnerabilities in the software and hardware components. They are susceptible to timing attacks, whereby attackers discover vulnerabilities by studying how long it takes the system to respond to different inputs. A timing attack is considered a side-channel attack. This type of attack is based on information gained from the implementation of a system, rather than on weaknesses in the software. Timing information, power consumption, electromagnetic leaks or even sound can be that source of information.
+
+*How can embedded systems be protected ?*
+
+One technique is to use System on Chip (SoC) technology. SoC technology is a Small Form Factor (SFF) hardware module — customer-grade examples include devices such as Raspberry Pi and Arduino. These devices are single-board computers that can be implemented using a Field-Programmable Gate Array (FGPA), an integrated circuit that can be programmed or modified in the field. This means that the user can make changes after deploying the device. These devices have good processing power delivered in a small footprint. This reduces power consumption, lowers cost and offers better performance than traditional, larger components. SoC integrates a microcontroller, an application or microprocessor, and peripherals such as a GPU, a Wi-Fi module or a coprocessor. The processor can run an operating system such as Windows, Linux or Android. Many of these SoC devices have poor authentication and/or they cannot be upgraded or patched. Due to the nature of these devices, a level of implied trust is necessary since there is no formal program in place to verify security controls.
+
+&nbsp;
+
+### **4.1.4 - VoIP**
+
+Implement the following countermeasures to secure VoIP:
+
+- Encrypt voice message packets to protect against eavesdropping.
+- Use SSH to protect gateways and switches.
+- Change all default passwords.
+- Use an intrusion detection system to detect attacks such as ARP poisoning.
+- Use strong authentication to mitigate registration spoofing (cybercriminals routing all incoming calls for the victim to themselves), proxy impersonating (tricking the victim into communicating via a rogue proxy set up by the cybercriminals), and call hijacking (intercepting and rerouting calls to a different path before reaching their destination).
+- Implement firewalls that recognize VoIP to monitor streams and filter abnormal signals.
+
+&nbsp;
+
+### **4.1.6 - Special Purpose embedded systems**
+
+Embedded systems work in a variety of industries. You can find special-purpose embedded devices in sectors such as the medical, automotive and aviation sectors.
+
+- **Medical** : pacemakers, insulin pumps, medical implants, defibrillators are capable of wireless connectivity, remote monitoring and NFC.
+- **Cars**
+- **Aviation** : An aircraft has many embedded control systems such as its flight control system and communication system. Security issues include the use of hard-coded logon credentials, insecure protocols and backdoors. In the same category, Unmanned Aerial Vehicles (UAVs), more commonly called drones, have been used in military, agricultural and cartography applications, among others. Drones are very useful for aerial photography, surveillance and surveying. However, drones are susceptible to hijacking, Wi-Fi attacks, GPS spoofing attacks, jamming and deauthentication attacks, which can allow an attacker to intercept or disable a drone and access its data.
+
+&nbsp;
+
+### **4.1.7 - Deception technologies**
+
+Organizations use deception technologies to distract attackers from production networks. They also use them to learn an attacker’s methods and to warn of potential attacks that could be launched against the network. Deception adds a fake layer to the organization’s infrastructure.
+
+**Honeypot** : A honeypot is a decoy system that is configured to mimic a server in the organization’s network. It is purposefully left exposed, to lure attackers. When an attacker goes after the honeypot, their activities are logged and monitored for later review. The honeypot distracts the attacker from the organization’s real network resources. An organization might even create a honeynet, a collection of honeypots, to mimic its network and distract attackers. Meanwhile, honeyfiles are dummy files that attract an attacker but do not contain any real information.
+
+**DNS Sinkholes** : A DNS sinkhole prevents the resolution of hostnames for specified URLs and can push users away from malicious resources.
+
+&nbsp;
+
+## **4.2 - Virtualization and cloud computing**
+
+&nbsp;
+
+### **4.2.1 - The virtual environment**
+
+- **Virtual machines** :
+    - **Hardware virtualization** : type 1 hypervisor. the guest operating system runs directly on a hardware platform, under the control of the host system. 
+    - **Hosted virtualization** : type 2 hypervisor. an application running on the host machine is used to create virtual machines that consist entirely of software and contain no hardware components.
+- **Containers** : Unlike a virtual machine, a container consists of just the application and its dependencies. A container uses an engine for operating system emulation. Docker is an open platform that uses OS-level virtualization to deliver software in packages (containers). You can easily move containers around and the application will run. Specialized software such as Kubernetes allows you to manage your containers.
+- **Virtual desktop infrastructure (VDI)** : User desktop environments can be stored remotely on a server using thin client or virtual desktops. This makes it very easy to quickly create, delete, copy, archive or download configurations over a network. Desktop virtualization requires high availability and storage capacity.
+
+&nbsp;
+
+### **4.2.3 - Cloud computing**
+
+- **Private cloud** : Also called an internal, corporate or enterprise cloud, a private cloud is hosted on a private platform. A private cloud offers an organization more control over its data, but it may be more expensive than other cloud services due to infrastructure, maintenance and administration costs.
+- **Public cloud** : A public cloud is hosted by a service provider at an offsite facility. Users pay a monthly or yearly usage fee to access the cloud. This option costs the organization less for infrastructure, maintenance and administration — however, the organization has less control over its data.
+- **Hybrid cloud** : A hybrid cloud combines the private and public cloud by offering control of organizational data, which is still hosted in a public cloud.
+- **Community cloud** : A community cloud is a collaborative effort in which more than one organization share and use the same platform. This type of cloud is geared toward the needs of an industry such as healthcare or energy.
+
+&nbsp;
+
+## **4.3 - Account management**
