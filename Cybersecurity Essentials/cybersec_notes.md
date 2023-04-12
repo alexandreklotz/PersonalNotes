@@ -1460,7 +1460,7 @@ Alice wants to send Bob an email that contains important information about the r
 
 ### **4.4.3 - Use classic and modern encryption algorithms**
 
-Vm activity TODO
+*JCrypTool*
 
 &nbsp;
 
@@ -1488,7 +1488,7 @@ All three generate and verify signatures. They use asymmetrical encryption and p
 
 ### **4.4.6 - Generate and use a digital signature**
 
-Vm activity TODO
+openssl to generate private key and public key from private key. watch tutorials later.
 
 &nbsp;
 
@@ -1746,6 +1746,5 @@ An organization can integrate SOAR in to its SIEM solution.
 
 &nbsp;
 
-### **5.4.6 - Packet tracer ex**
+## **5.5 - Security resilience**
 
-TODO
