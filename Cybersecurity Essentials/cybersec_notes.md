@@ -2,7 +2,6 @@
 
 &nbsp;
 
----
 # **1 - Threats Vulnerabilities and Attacks**
 &nbsp;
 
@@ -1319,3 +1318,434 @@ Organizations use deception technologies to distract attackers from production n
 &nbsp;
 
 ## **4.3 - Account management**
+
+&nbsp;
+
+### **4.3.1 - Account types**
+
+It’s important to properly manage accounts to maintain security.
+
+- On hiring a new employee, create an identity profile, register the employee’s computer and mobile devices, and enable access to the organization’s network. As the Identity Provider (IdP), the organization is responsible for authenticating their identity.
+- Disable or deactivate any accounts that are no longer needed and retrieve any organizational data or applications from the user’s devices.
+- Grant a user no more access than is necessary to perform assigned tasks (least privilege).
+- Review user access to identify any access control adjustments that need to be made.
+- Use time of day restrictions to control when a user can log in.
+- Use location restrictions to control where a device or user can log in from.
+- Geofencing is used to trigger an action when a user enters or exits a geographic boundary.
+- Geolocation identifies a device based on its geographic location.
+- Geotagging adds an identifier to something based on the location (like a photo taken on a smartphone tagged with the coordinates of where the photo was taken).
+
+&nbsp;
+
+### **4.3.2 - Privileged accounts**
+
+Cybercriminels target privileged accounts because these are the most powerful accounts in the organization with elevated, unrestricted access to systems. Organizations should adopt robust practices for securing privileged accounts.
+
+- Identify and reduce the number of privileged accounts.
+- Enforce the principle of least privilege. The principle means that users, systems, and processes only have access to resources (networks, systems and files) that are absolutely necessary to perform their assigned function.
+- Revoke access rights when employees leave or change jobs.
+- Eliminate shared accounts with passwords that do not expire.
+- Secure password storage.
+- Eliminate shared credentials for multiple administrators.
+- Automatically change privileged account passwords every 30 or 60 days.
+- Record privileged sessions.
+- Implement a process to change embedded passwords for scripts and service accounts.
+- Log all user activity.
+- Generate alerts for unusual behavior.
+- Disable inactive privileged accounts.
+- Use multi-factor authentication for all administrative access.
+- Implement a gateway between the end user and sensitive assets to limit network exposure to malware.
+
+&nbsp;
+
+### **4.3.5 - Account policies in windows**
+
+When a computer is not part of an Active Directory domain, the user configures policies through Windows Local Security Policy. In all versions of Windows except Home edition, enter ‘secpol.msc’ at the Run command to open the Local Security Policy tool.
+
+- **Password policies**
+- **Account lockout policy**
+- **Audit policies** : More security settings are available by selecting the ‘local policies’ folder in Windows. An audit policy creates a security log file used to track the following events:
+    - Account logon events.
+    - Audit account management.
+    - Directory service access.
+    - Object access.
+    - Policy changes.
+    - Privilege use.
+    - Process tracking.
+    - System events.
+
+
+&nbsp;
+
+### **4.3.6 - Authentication management**
+
+- A **Single Sign On (SSO)** solution allows the user to use one set of login credentials to authenticate across multiple applications. This way, the user only needs to remember one strong password. 
+- **OAuth** is a standard that enables a user’s account information to be used by third-party services such as Facebook or Google.  
+- A **password** vault can protect and store the user’s credentials with a single strong password required to access them.
+- Many organizations implement **Knowledge-Based Authentication (KBA)** to provide a password reset should a user forget their password. KBA is based on personal information known by the user or a series of questions.
+
+&nbsp;
+
+### **4.3.7 - Hash-Based Message Authentication Code (HMAC)**
+
+Hash-Based Message Authentication Code (HMAC) uses an encryption key with a hash function to authenticate a web user. Many web services use basic authentication, which does not encrypt the username and password during transmission. Using HMAC, the user sends a private key identifier and an HMAC. The server looks up the user’s private key and creates an HMAC. The user’s HMAC must match the one calculated by the server. VPNs using IPsec rely on HMAC functions to authenticate the origin of every packet and provide data integrity checking.
+
+Cisco products use hashing for entity authentication, data integrity and data authenticity purposes.
+
+- Cisco IOS routers use hashing with secret keys in an HMAC-like manner to add authentication information to routing protocol updates.
+- IPsec gateways and clients use hashing algorithms, such as MD5 and SHA-1 in HMAC mode, to provide packet integrity and authenticity.
+- Cisco software images on Cisco.com have an MD5-based checksum available so that customers can check the integrity of downloaded images.
+
+&nbsp;
+
+### **4.3.8 - Authentication protocols and technologies**
+
+An authentication protocol authenticates data between two entities to prevent unauthorized access. A protocol outlines the type of information that needs to be shared in order to authenticate and connect.
+
+- **Extensible Authentication Protocol (EAP)** : A password from the client is sent using a hash to the authentication server. The authentication server has a certificate (the client does not need a certificate).
+- **Password Authentication Protocol (PAP)** : A username and password are sent to a remote access server in plaintext. Most network operating system remote servers support PAP.
+- **Challenge Handshake Authentication Protocol (CHAP)** : CHAP validates the identity of remote clients using a one-way hashing function created by the client. The service also calculates the expected hash value. The server (the authenticator) compares the two values. If the values match, the transmission continues. CHAP also periodically verifies the identity of the client during the transmission.
+- **802.1x** : An organization authenticates your identity and authorizes access to the network. Your identity is determined based on credentials or a certificate which is confirmed by a RADIUS server.
+- **RADIUS** : When simple username/password authentication is needed, use RADIUS to either accept or deny access. RADIUS only encrypts the user’s password from the RADIUS client to the RADIUS server. The username, accounting and authorized services are transmitted in cleartext. When RADIUS is integrated into a product, security measures that protect against replay attacks are necessary.
+- **TACACS+** : TACACS+ uses TCP as its transport protocol. TACACS+ encrypts all of the data (username, password, accounting and authorized services) between the client and the server. Since network administrators can define ACLs, filters and user privileges, TACACS+ is a better choice for corporate networks requiring more sophisticated authentication steps and control over authorization activities.
+- **Kerberos** : Kerberos uses strong encryption, requesting a client to prove its identity to a server, with the server in turn authenticating itself to the client. The Kerberos server contains user IDs and hashed passwords for all users that will have authorizations to realm services. The Kerberos server also has shared secret keys with every server to which it will grant access tickets. The basis for authentication in a Kerberos environment is the ticket. Tickets are used in a two-step process with the client. The first ticket is a ticket-granting ticket issued by the authentication service to a requesting client. The client can then present this ticket to the Kerberos server with a request for a ticket to access a specific server. This client-to-server ticket (aka service ticket) is used to gain access to a server’s service. Since the entire session can be encrypted, this eliminates the inherently insecure transmission of items (such as passwords) that can be intercepted on the network. Tickets are timestamped and expire, so any attempt to reuse a ticket will not be successful.
+
+&nbsp;
+
+### **4.3.10 - Applications of cyptographic hash functions**
+
+Cryptographic hash functions are used in the following situations:
+
+- To provide proof of authenticity when used with a symmetric secret authentication key such as IP security (IPsec) or routing protocol authentication.
+- To provide authentication by generating one-time and one-way responses to challenges in authentication protocols.
+- To provide message integrity check proof (such as those used in digitally signed contracts) and Public Key Infrastructure (PKI) certificates (like those accepted when accessing a secure website).
+
+When choosing a hashing algorithm, use SHA-256 or higher, as they are currently the most secure. Avoid SHA-1 and MD5 due to security flaws that have been discovered.
+
+&nbsp;
+
+### **4.3.11 - Access control strategies**
+
+Access control strategies enable an organization to grant or restrict access to a network device or data.
+
+- **Mandatory access control** : Mandatory access control restricts the actions that a user can perform on an object (such as a file, a port or a device). An authorization rule enforces whether a user can access the object. Organizations use mandatory access control where different levels of security classifications exist. Every object has a label, and every user has a clearance. A mandatory access control system restricts a user based on the security classification of the object and the label attached to the user.
+- **Discretionary access control** : In systems that employ discretionary access controls, the owner of an object can decide which users can access that object and what specific access they may have.
+- **Role-based access control** : Role-based access control depends on the role or job function of the user. Specific roles require permissions to perform certain operations and users acquire permissions through their role. Role-based access control can work in combination with discretionary access controls or mandatory access controls by enforcing the policies of either one. Role-based access control helps to implement security administration in large organizations with hundreds of users and thousands of possible permissions.
+- **Rule-based access control** : Rule-based access control uses access control lists to help determine whether to grant access. A series of rules is contained in the access control list and the decision to grant access depends on these rules. For example, a rule stating that no employee may have access to the payroll file after hours or on weekends. As with mandatory access control, users cannot change the access rules. Importantly, organizations can combine rule-based access control with other strategies for implementing access restrictions. For example, mandatory access control methods can utilize a rule-based approach for implementation.
+
+&nbsp;
+
+- A rule that no employee can access the @Apollo payroll file after hours or on weekends is an example of rule-based access control.
+- Specifying that only HR Managers can access files relating to employee contracts is an example of role-based access control.
+- The Finance Manager setting permissions so the team lead can access their report to add data is an example of discretionary access control.
+- The @Apollo Company Finance Report is classified as highly sensitive and can only be accessed by senior managers who have highly-sensitive data clearance. This is an example of mandatory access control.
+
+&nbsp;
+
+## **4.4 - Cryptography in the enterprise**
+
+&nbsp;
+
+### **4.4.2 - Creating a digital signature**
+
+Digital signatures use asymmetric cryptography. A public key algorithm like RSA generates two mathematically related keys: one private and one public. But how is a digital signature created? Let’s look at an example to find out.
+
+Alice wants to send Bob an email that contains important information about the rollout of a new @Apollo product. Alice wants to make sure that Bob knows that the message came from her, and that the message did not change after she sent it.
+
+- **Create a message and encrypt it with a private key**
+- **Send the encrypted message with a public key** : Alice bundles the message, the encrypted message digest and her public key together to create the signed document. Alice sends this to Bob.
+- **Read the encrypted message using the public key** : Bob receives the message and reads it. To make sure that the message came from Alice, he creates a message digest. He takes the encrypted message digest received from Alice and decrypts it using Alice’s public key. Bob compares the message digest received from Alice with the one he generated. If they match, Bob knows that he can trust that no one tampered with the message.
+
+&nbsp;
+
+### **4.4.3 - Use classic and modern encryption algorithms**
+
+Vm activity TODO
+
+&nbsp;
+
+### **4.4.4 - Using digital signatures**
+
+Signing a hash (or message digest) instead of the whole document provides efficiency, compatibility and integrity. Increasingly, organizations are looking to replace paper documents and ink signatures with an electronic solution that still satisfies the legal requirements.
+
+- **Code signing** : used to verify the integrity of an executable file downloaded from a vendor website. It also uses signed digital certificates to authenticate and verify the identity of the website.
+- **Digital certificates** : used to verify the identity of an organization or individual in order to authenticate a vendor website and establish an encrypted connection to exchange confidential data.
+
+&nbsp;
+
+### **4.4.5 - Comparing digital signature algorithms**
+
+There are three common digital signature algorithms :
+- **Digital Signature Algorithm (DSA)** : The digital signature algorithm uses large number factorization. Governments use DSA to create digital signatures. DSA does not extend beyond the signature to the message itself.
+- **Rivest-Shamir-Adleman (RSA)** : RSA is the most commonly used public key cryptography algorithm. Named after the individuals who created it in 1977 — Ron Rivest, Adi Shamir and Leonard Adleman — RSA depends on asymmetrical encryption. RSA signs and encrypts the content of the message. DSA produces digital signatures faster than RSA. However, DSA does not extend to the message, so RSA is more suitable for applications that require both signing and message encryption. The RSA algorithm is based on two mathematical principles: modulus and prime number factorization.
+- **Elliptic Curve Digital Signature Algorithm (ECDSA)** : The elliptic curve digital signature algorithm is the newest digital signature algorithm. It is gradually replacing RSA, as it uses much smaller key sizes, provides the same level of security and requires less computation.
+
+All three generate and verify signatures. They use asymmetrical encryption and public key techniques and require two operations : **key generation** and **key verification**.
+
+*Read chapters 2.5.8 and 2.5.10 for more information about RSA/ECC*
+
+&nbsp;
+
+### **4.4.6 - Generate and use a digital signature**
+
+Vm activity TODO
+
+&nbsp;
+
+### **4.4.7 - What is a digital certificate ?**
+
+A digital certificate is equivalent to an electronic passport. Digital certificates enable organizations to exchange information securely over the Internet. A digital certificate authenticates and verifies that a user sending a message is who they claim to be. Digital certificates can also provide confidentiality for the receiver as it enables them to encrypt a reply. Digital certificates are like physical certificates.
+
+&nbsp;
+
+### **4.4.9 - Types of digital certificates**
+
+- **Domain validation certificate** : verifies the domain name and is the quickest and least expensive certificate to acquire. It validates the domain name against a database of registered domains.
+- **Organization validation certificate** : An organization validation certificate confirms the existence of an organization following a validation process.
+- **Extended validation certificate** : This certificate requires a comprehensive validation of the organization, which can take a couple of weeks. Although this certificate is the most expensive, it provides the highest level of trust.
+
+There are also different types of special certificates :
+
+- **Wildcard** : A wildcard certificate is applied to any subdomains of a single registered domain.
+- **Email** : This certificate digitally signs or encrypts email messages. It verifies emails and contains the email ID of the user. It identifies the signer of the email message with the email ID contained in their certificate.
+- **Subject Alternative Name (SAN)** : A SAN certificate can have multiple domain names or IP addresses within a single certificate.
+- **Self-signed** : When trust is not a concern or for testing purposes, another entity or CA signs this type of certificate. The user’s browser will provide an alert that the connection is not trusted.
+- **Client (user)** : A merchant uses this certificate to identify their clients. A user certificate authenticates a user to a remote server (like a password would).
+- **Computer/machine** : This certificate verifies the system or computer, not the user, and is mainly used to authenticate the machine on a network.
+- **Code signing** : A code signing certificate allows software developers to encrypt the code of their software to protect intellectual property. This type of certificate ensures the highest level of security and verification. Code signing certificates enable the CA to verify integrity of software and the identity of the publisher using Public Key Infrastructure (PKI) and digital signature technology. It confirms that the code has not been tampered with or corrupted.
+
+&nbsp;
+
+### **4.4.10 - Constructing a digital certificate**
+
+The process for constructing a digital certificate follows the X.509 standard, which specifies the information that digital certificates must contain.
+
+- **Validation** : Browsers and applications perform a validation check before they trust a certificate to ensure they are valid. Validation processes include the following :
+    - Certificate discovery validates the certification path by checking each certificate starting at the beginning with the root CA’s certificate.
+    - Path validation selects a certificate of the issuing CA for each certificate in the chain.
+    - Certificate revocation determines whether the certificate was revoked and why.
+- **Certification path** : An individual gets a certificate for a public key from a commercial CA. The certificate belongs to a chain of certificates called the chain of trust. The number of certificates in the chain depends on the hierarchical structure of the CA. For a two-tier CA, there is an offline root CA and an online subordinate CA. The reason for the two-tier structure is that X.509 signing allows for easier recovery in the event of a compromise. If there is an offline CA, it can sign the new online CA certificate. If there is no offline CA, a user must install a new root CA certificate on every client machine, phone or tablet.
+- **Invalid certificates** : If a certificate is no longer valid, the community that trusts the certificate must be notified.
+    - A Certificate Revocation List (CRL) distributes certificate revocation information. CRLs must be constantly updated so that revoked certificates are not accepted.
+    - Online Certificate Status Protocol (OCSP) is a newer implementation for identifying revoked certificates online in real time, instead of using a current copy of the CRL.
+
+&nbsp;
+
+### **Certificate authentication process / Validation**
+
+- When visiting a website, the browser initiates a secure connection with Alice's web server and displays a lock icon in the security status bar.
+- The web server receives the request and replies by sending its digital certificate containing the web server’s public key and other information.
+- The browser checks the digital certificate against stored certificates and confirms that he is indeed connected to the web server. Only trusted certificates permit the transaction to go forward. If the certificate is not valid, then communication fails.
+- The web browser creates a unique session key that will be used for secure communication with the web server.
+- The browser encrypts the session key using the web server's public key and sends it to the web server.
+- The web server receives the encrypted message from the browser. It uses its private key to decrypt the message and discover the session key. Future exchanges between the web server and browser will now use a session key to encrypt data.
+
+&nbsp;
+
+### **4.4.12 - The blockchain**
+
+Blockchain is a record-keeping digital ledger technology used in cryptocurrencies such as Bitcoin. It allows digital coins or other types of assets to move from one party to another while keeping track of who has what at any time. Blockchain helps streamline dealings such as transferring money by using a distributed, decentralized public ledger to keep track of transactions. Each block on the Blockchain contains a cryptographic hash of the previous block, a timestamp and the transaction data. This open ledger is a chain of transactions and information that is open and public. For instance, if Anja wanted to send 0.5 Bitcoins to David, everyone can immediately see that this is not possible since Anja only has 0.25 in Bitcoins, as the Blockchain confirms. This transaction will not be added to the ledger, and it will not become part of the chain. One of the goals of Blockchain is to do away with centralized control — with the third party. To do this, blockchain uses a distributed ledger. Each user node on the network has a copy of the ledger.
+
+&nbsp;
+
+### **4.4.13 - What is the blockchain used for ?**
+
+There are many practical applications for blockchain technology as it can make business and government operations more accurate and efficient. Blockchains have no single point of failure, a fact which improves security. And, since blockchains are distributed across hundreds of thousands of computers, it is virtually impossible to attack every single one simultaneously, and therefore it is impossible to change the records on the blockchain.
+
+- **Banking** : A blockchain never sleeps, so consumers could see bank transactions processed in just a few minutes, regardless of the time or day. In the stock trading world, the settlement and clearing process can take three days or more (the money and shares are frozen during that time), but this timeframe could be reduced using blockchain technology.
+- **Healthcare** : Providers can securely store patients’ medical records using the blockchain. This would give the patient complete confidence that their record cannot be changed by unauthorized parties.
+- **Property**
+- **Smart contracts** : Smart contracts use computer code that is built into blockchain networks to facilitate, verify or negotiate contract agreements.
+- **Suppliers** : Suppliers can use the blockchain to record the origin of the materials purchased. Labels like organic, local and Fairtrade can be verified. The blockchain could also be used to track the path and safety of food throughout its journey to the consumer.
+
+&nbsp;
+
+---
+
+# **5 - Cybersecurity operations**
+
+&nbsp;
+
+## **5.1 - Defense in depth**
+
+&nbsp;
+
+### **5.1.1 - Defense in depth strategies**
+
+To make sure data and infrastructure remain secure, an organization should create different layers of protection.
+- **Layering** : To make sure data and information remains available, an organization must set up different layers of protection, creating a barrier of multiple defenses that work together to prevent attacks. A good example of layering is an organization storing its top-secret documents on a password-protected server in a locked building that is surrounded by an electric fence. A layered approach provides the most comprehensive protection because, even if cybercriminals penetrate one layer, they still must contend with several more defenses. Ideally, each layer should be more complicated to overcome!
+- **Limiting** : Limiting access to data and information reduces the possibility of a security threat. An organization should restrict access so that each user only has the level of access required to do their job. An organization should have the right tools and settings, such as file permissions, in place to limit access, as well as the right procedural measures, which define specific steps for doing anything that can affect security.
+- **Diversity** : If all defense layers were the same, it would not be very difficult for cybercriminals to succeed in an attack. The layers must be different so that if one layer is penetrated, the same technique will not work on all the others which would compromise the whole system. Furthermore, an organization will normally use different encryption algorithms and authentication systems to protect data in different states.
+- **Obscurity** : Obscuring information can also protect data and information. An organization should not reveal any information that cybercriminals can use to identify which Operating System (OS) a server is running, or the type or make of equipment or software it uses.
+- **Simplicity** : Complexity does not necessarily guarantee security. If an organization implements complex systems that are hard to understand and troubleshoot, this may backfire.
+
+&nbsp;
+
+## **5.2 - Cybersecurity operations management**
+
+&nbsp;
+
+### **5.2.1 - Configuration management**
+
+Configuration management refers to identifying, controlling and auditing the implementation and any changes made to a system’s established baseline. The baseline configuration includes all the settings that you configure for a system which provide the foundation for all similar systems — like a template of sorts. For instance, those responsible for deploying Windows workstations to users must install the required applications and set up the system settings according to a documented configuration. This is the baseline configuration for Windows workstations within this organization.
+
+Documented configuration resources might include the following :
+- Network maps, cabling and wiring diagrams, application configuration specifications.
+- Standard naming conventions used for computers.
+- IP schema to track IP addresses.
+
+Hardening the operating system is an important part of making sure that systems have secure configurations. Configuring log files along with auditing, changing default account names and passwords, and implementing account policies and file-level access control are all used to create a secure OS.
+
+&nbsp;
+
+### **5.2.2 - Log files**
+
+For example, an audit log tracks user authentication attempts, while an access log records details on requests for specific files on a system. Monitoring system logs will therefore help us determine how an attack occurred and which of the defenses deployed were successful — and which were not.
+As an increasing number of log files are generated for computer security purposes, organizations should consider a log management process. Management of computer security log data should determine the procedures for the following:
+- Generating log files.
+- Transmitting log files.
+- Storing log files.
+- Analyzing log data.
+- Disposing of log data.
+
+&nbsp;
+
+### **5.2.3 - Operating system logs and application security logs**
+
+- **Operating system logs** : Operating system logs record events that are linked to actions that have to do with the operating system. System events include the following:
+    - Client requests and server responses such as successful user authentications.
+    - Usage information that contains the number and size of transactions in a given period of time.
+- **Application security logs** : Organizations use network-based and/or system-based security software to detect malicious activity. This software generates a security log to provide computer security data. These logs are useful for performing auditing analysis and identifying trends and long-term problems. Logs also enable an organization to provide documentation showing that it complies with laws and regulatory requirements.
+
+&nbsp;
+
+### **5.2.4 - Protocol analyzers**
+
+Examples : Wireshark, EtherApe, TCPdump, Ettercap, Kismet, Ngrep, Ntop.
+
+Packet analyzers perform the following functions:
+- Traffic logging.
+- Network problem analysis.
+- Detection of network misuse.
+- Detection of network intrusion attempts.
+- Isolation of exploited systems.
+
+&nbsp;
+
+## **5.3 - Physical security**
+
+&nbsp;
+
+### **5.3.1 - Fencing and physical barriers**
+
+In many situations, they are the outermost layer of defense and the most visible. All physical barriers should meet specific design requirements and material specifications.
+
+Physical barriers may have the following components:
+- Perimeter fence system.
+- Security gate system.
+- Bollards.
+- Vehicle entry barriers.
+- Guard shelters.
+- Fencing.
+
+When designing a perimeter fencing system, the following height guidelines apply:
+- 1 meter (3-4 ft.) will only deter casual trespassers.
+- 2 meters (6-7 ft.) are too high to climb by casual trespassers.
+- 2.5 meters (8 ft.) will offer limited delay to a determined intruder.
+
+High-security areas often require a ‘top guard’ such as barbed wire or concertina wire. Top guards act as an additional deterrent and can delay the intruder by causing severe injury. However, attackers can still use a blanket or mattress to alleviate this threat. Local regulations may restrict the type of fencing system an organization can use and it’s important to remember that fences require regular maintenance. Animals may burrow under the fence or the earth may wash out, leaving the fence unstable — this would lead to easy access for an intruder. Fencing systems should be inspected regularly. Moreover, vehicles should never be parked near a security fence, as this could assist the intruder in climbing over or causing damage to the fence.
+
+&nbsp;
+
+### **5.3.2 - Biometrics**
+
+Biometric authentication systems can include measurements of the face, fingerprint, hand geometry, iris, retina, signature and voice.
+
+When selecting biometric systems, there are several important factors to consider, including:
+- Accuracy.
+- Speed or throughput rate.
+- Acceptability to users.
+- Uniqueness of the biometric organ and action.
+- Resistance to counterfeiting.
+- Reliability.
+- Data storage requirements.
+- Enrollment time.
+- Intrusiveness of the scan.
+- The most important of these factors is accuracy, which is expressed in error types and rates.
+
+The first error rate is Type 1 errors or false rejections. A Type I error rejects a person that registers and is an authorized user. However, in many biometric applications, particularly retail or banking, false rejections can have a very negative impact on business.
+
+False acceptance is a Type II error. Type II errors allow entry to people who should not have entry, meaning a cybercriminal can potentially gain access. They are considered the most important error for a biometric access control system. The acceptance rate is also an important concept here. Stated as a percentage, it is the rate at which a system accepts unenrolled individuals or imposters as authentic users – so the rate of Type II errors per total instances of granting permission.
+
+The most widely used metric to describe the overall accuracy of a biometric authentication system is the Crossover Error Rate (CER). The CER is the point where the false rejection rate and the false acceptance rate are the same, as shown in this diagram. Simply put, a more sensitive system will result in more false rejections and fewer false acceptances. But if the system isn’t sensitive enough, more log-in attempts will be accepted, including more false acceptances.
+
+&nbsp;
+
+## **5.4 - Security assessments**
+
+&nbsp;
+
+### **5.4.1 - Vulnerability scanners**
+
+A vulnerability scanner assesses computers, computer systems, networks or applications for weaknesses. Vulnerability scanners can help to automate security auditing by scanning the network for security risks and producing a prioritized list to address vulnerabilities.
+A vulnerability scanner looks for the following types of vulnerabilities:
+- Use of default passwords or common passwords.
+- Missing patches.
+- Open ports.
+- Misconfigurations in operating systems and software.
+- Active IP addresses, including any unexpected devices connected.
+
+&nbsp;
+
+### **5.4.2 - Types of scan**
+
+When evaluating a vulnerability scanner, look at how it is rated for accuracy, reliability, scalability and reporting. You can choose a software-based or cloud-based vulnerability scanner.
+Categories ;
+- **Network scanners** probe hosts for open ports, enumerate information about users and groups and look for known vulnerabilities on the network.
+- **Application scanners** access application source code to test an application from the inside (they do not run the application).
+- **Web application scanners** identify vulnerabilities in web applications.
+
+**Intrusive and credentialed scans**
+
+Intrusive scans try to exploit vulnerabilities and may even crash the target, while a non-intrusive scan will try not to cause harm to the target. In a credentialed scan, usernames and passwords provide authorized access to a system, allowing the scanner to harvest more information. Non-credentialed scans are less invasive and give an outsider’s point of view.
+
+&nbsp;
+
+### **5.4.3 - CLI utilities**
+
+- ipconfig
+- ping
+- arp
+- tracert
+- nslookup
+- netstat
+- nbtstat : helps to troubleshoot NetBIOS name resolution problems in a Windows system.
+- nmap : used in security auditing. Locates network hosts, detects OS and identifies services.
+- netcat : gathers information from TCP and UDP network connections and can be used for port scanning, monitoring, banner grabbing and file copying.
+- hping : assembles and analyzes packets and is used for port scanning, path discovery, OS fingerprinting and firewall testing.
+
+&nbsp;
+
+### **5.4.4 - Security automation**
+
+Let’s now look at some information on the automated approaches of Security Information and Event Management (SIEM) and Security Orchestration Automation and Response (SOAR).
+- **SIEM** : Security Information and Event Management (SIEM) systems use log collectors to aggregate log data from sources such as security devices, network devices, servers and applications. Logs can generate many events in a day, so SIEM systems help to reduce event volume by combining similar events to reduce the event data load. SIEM identifies deviations from the norm and then takes the appropriate action. The goals of a SIEM system for security monitoring are:
+    - Identify internal and external threats.
+    - Monitor activity and resource usage.
+    - Conduct compliance reporting for audits.
+    - Support incident response.
+
+Advanced SIEM systems include user and entity behavior analytics that look for patterns that rely on human sentiment to recognize a threat before it becomes a threat.
+
+- **SOAR** : Orchestration Automation and Response (SOAR) tools allow an organization to collect data about security threats from various sources, and respond to low-level events without human intervention. SOAR has three important capabilities:
+    - Threat and vulnerability management.
+    - Security incident response.
+    - Security operations automation.
+
+An organization can integrate SOAR in to its SIEM solution.
+
+&nbsp;
+
+### **5.4.6 - Packet tracer ex**
+
+TODO
