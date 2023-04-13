@@ -1748,3 +1748,91 @@ An organization can integrate SOAR in to its SIEM solution.
 
 ## **5.5 - Security resilience**
 
+&nbsp;
+
+### **5.5.1 - High availability**
+
+The term ‘high availability’ describes systems designed to avoid downtime as much as possible. The continuous availability of information systems is imperative.
+
+Based on three design principles :
+- **Eliminating single points of failure** : The first principle that defines high availability systems starts with identifying all system devices and components whose failure would result in system-wide failure. Methods to eliminate single points of failure include replacing or removing hot stand-by devices, redundant components and multiple connections or pathways.
+- **Providing for reliable crossover** : Redundant power supplies, backup power systems and backup communications systems all provide for reliable crossover — the second design principle.
+- **Detecting failures as they occur** : The third principle is active device and system monitoring to detect many types of events including system and device failures.
+
+&nbsp;
+
+### **5.5.2 - The five nines**
+
+Every organization wants to be able to operate uninterrupted, even under extreme conditions, such as during an attack. One of the most popular high availability goals is often called ‘five nines.’ It gets its name from its aim to achieve an availability rate of 99.999%, which is five nines in a row. In practice, this means that downtime is less than 5.26 minutes per year.
+
+Common steps taken to reach this objective :
+- **Standardized systems** Systems standardization provides for systems that use the same components. As a result, parts inventories are easier to maintain and it is possible and easy to swap components, even during an emergency. In highly secure information system facilities, guards control access to the organization’s sensitive areas. The benefit of using guards here is that they can adapt more than automated systems. Guards can learn and distinguish many different conditions and situations, and make decisions on the spot.
+- **Clustering** : If one device in a cluster fails, the other devices remain available and can step in.
+- **Shared component systems** : Systems are built so that a complete system can stand in for one that failed.
+
+&nbsp;
+
+### **5.5.3 - Single points of failure**
+
+Single points of failure are weak links in the chain that can cause disruption of the organization's operations. A single point of failure is any part of the operation of the organization whose failure means complete failure of the entire system — in other words, if it fails, the entire system fails.
+
+&nbsp;
+
+### **5.5.4 - N+1 Redundancy**
+
+N+1 redundancy helps ensure system availability in the event of a component failure. It means that components (N) need to have at least one backup component (+1).
+Although a system using N+1 architecture contains redundant equipment, it is not a fully redundant system.
+
+In a network, N+1 redundancy means that the system design can withstand the loss of one of each component. The N refers to each different infrastructure component that is part of the system. For example, a data center includes servers, power supplies, switches and routers. The +1 is the additional component or system that is standing by, ready when needed. N+1 redundancy in a data center that consists of the above elements means that we have a server, a power supply, a switch and a router on standby, ready to come online if something happens to the main server, the main power source, switch or router.
+
+&nbsp;
+
+### **5.5.5 - RAID**
+
+&nbsp;
+
+**RAID Level Comparaison**
+
+&nbsp;
+
+| Raid Level | Min Number Of Drives | Description | Advantages | Disadvantages |
+|:-----------|:---------------------|:------------|:-----------|:--------------|
+| 0 | 2 | Data striping without redundancy | Highest performance | No data protection, failure of one drive results in loss of all data |
+| 1 | 2 | Disk mirroring | Highest performance, high data protection because all data is duplicated | High cost of implementation because an additional drive of equal or larger capacity is required |
+| 5 | 3 | Combination of data striping and parity | Supports multiple simultaneous reads and writes, Data is written accross all | Write performance is slower than RAID 0 or 1 |
+
+&nbsp;
+
+*How does it work ?*
+
+RAID takes data that is normally stored on a single disk and spreads it out among several drives. If any single disk is lost, the user can recover data from the other disks where the data also resides. RAID can also increase the speed of data recovery as multiple drives will be faster retrieving requested data than one disk doing the same.
+
+A RAID solution can be either hardware-based or software-based. A hardware-based solution requires a specialized hardware controller on the system that contains the RAID drives, while software RAID is managed by utility software in the OS. The following terms describe the various ways RAID can store data in the array of disks :
+- **Mirroring** : Stores data, then duplicates and stores the same on a second drive.
+- **Striping** : Writes data across multiple drives so that consecutive segments are stored on different drives.
+- **Parity** : More precisely, striping with parity. After striping, checksums are generated to check that no errors exist in the striped data. These checksums are stored on a third drive.
+
+Further RAID architectures exist, which mainly combine the above elements.
+
+&nbsp;
+
+### **5.5.6 - Spanning Tree**
+
+Redundancy increases the availability of the infrastructure by protecting the network from a single point of failure, such as a failed network cable or a failed switch.
+
+But when designers build physical redundancy into a network, loops and duplicate frames occur. Loops and duplicate frames have severe consequences for a switched network.
+
+The Spanning Tree Protocol (STP) addresses these issues. Its basic function is to prevent loops on a network when switches interconnect via multiple paths. STP ensures that redundant physical links are loop-free and only one logical path runs between all destinations on the network. To do this, STP intentionally blocks redundant paths that could cause a loop.
+
+Blocking the redundant paths is critical to preventing loops on the network. The physical paths still exist to provide redundancy, but STP disables these paths to prevent the loops from occurring. If a network cable or switch fails, STP recalculates the paths and unblocks the necessary ports to allow the redundant path to become active.
+
+Example of STP stages when a failure occurs.
+
+- PC1 sends a broadcast out onto the network.
+- The trunk link between S2 and S1 fails, resulting in disruption of the original path.
+- S2 unblocks the previously blocked port for Trunk2 and allows the broadcast traffic to traverse the alternate path around the network, permitting communication to continue.
+- If the link between S2 and S1 comes back up, STP again blocks the link between S2 and S3.
+
+&nbsp;
+
+### **5.5.7 - Router redundancy**
