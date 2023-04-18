@@ -1836,3 +1836,126 @@ Example of STP stages when a failure occurs.
 &nbsp;
 
 ### **5.5.7 - Router redundancy**
+
+The default gateway is typically the router that provides devices access to the rest of the network and/or to the Internet. If there is only one router serving as the default gateway, it is a single point of failure. To avoid this, an organization can choose to install an additional standby router.
+
+A redundancy protocol determines which router should take the active role in forwarding traffic; the forwarding router or the standby router? Each is configured with a physical IP address and a virtual router IP address. End devices use the virtual IP address as the default gateway, which is 192.0.2.100. 
+
+The forwarding router and the standby router use their physical IP addresses to send periodic messages. The purpose of these messages is to make sure both are still online and available.
+
+If the standby router stops receiving these periodic messages from the forwarding router, it realizes it is the only router available and assumes the forwarding role for itself. Meanwhile, because the PCs on the network still communicate with the virtual router at 192.0.2.100, they stay online despite everything that has happened, since the virtual router now forwards to what was previously the standby router.
+
+The ability of a network to dynamically recover from the failure of a device acting as a default gateway is known as first-hop redundancy, as we’ve seen in this scenario.
+
+&nbsp;
+
+### **5.5.8 - Location redundancy**
+
+An organization may also want to consider location redundancy, depending on its needs.
+
+- **Synchronous replication** :
+    - Synchronizes both locations in real time
+    - Requires high bandwidth
+    - Locations must be close together to reduce latency
+- **Asynchronous replication** :
+    - Not synchronized in real time but close to it
+    - Requires less bandwidth
+    - Sites can be further apart because latency is less of an issue
+- **Point-in-time replication** :
+    - Updates the backup data location periodically, at certain points in time
+    - More bandwidth conservative because it does not require a constant connection
+
+*The correct balance between cost and availability will determine the correct choice for an organization.*
+
+&nbsp;
+
+### **5.5.9 - Resilient design**
+
+Resiliency is the name given to the methods and configurations used to make a system or network tolerant to failure.
+
+**Examples**
+
+An example of resiliency is a network having redundant links between switches running STP. Although STP does provide an alternate path through the network if a link fails, the switchover may not be immediate if the configuration is not optimal, so these redundant links together with STP provide more resiliency. Routing protocols also provide resiliency, but fine-tuning can improve the switchover so that network users do not notice. Administrators should investigate non-default settings in a test network to see if they can improve network recovery times, thus leading to minimal disruption. As seen in the above examples, resilient design is about more than just adding redundancy. It is critical to understand the business needs of the organization and then incorporate redundancy to create a resilient network.
+
+**Application resilience**
+
+Application resilience is an application’s ability to react to component problems while still functioning. Application errors or infrastructure failures can cause downtime, but an administrator will eventually need to shut down applications for patching, version upgrades, or to deploy new features.
+
+Achieving resiliency of application infrastructure means avoiding losing customers, employee morale or business due to an application failure.
+
+There are three availability solutions to address application resilience. As the availability factor of each solution increases, the complexity and cost also increase.
+
+- **Fault tolerant hardware** : A system designed by building multiples of all critical components into the same computer.  
+- **Cluster architecture** : A group of servers acting like a single system.
+- **Backup and restore** : Copying files for the purpose of being able to restore them if data loss occurs.
+
+**IOS resilience**
+
+The Interwork Operating System (IOS) for Cisco routers and switches includes a resilient configuration feature. It allows for faster recovery if someone maliciously or unintentionally reformats flash memory or erases the startup configuration file. The feature maintains a secure working copy of the router IOS image file and a copy of the running configuration file. The user cannot remove these secure files, also known as the primary bootset.
+
+The commands shown in the figure secure the IOS image and running configuration file.
+
+&nbsp;
+
+### **5.5.11 - Designing high availability systems**
+
+Three major principles :
+- **Elimination or reduction of single points of failure**
+- **Fault tolerance** : Fault tolerance enables a system to continue to operate if one or more of its components fail. Data mirroring is one example of fault tolerance. 
+- **System resiliency**
+
+&nbsp;
+
+### **5.5.12 - Power**
+
+**Power excess**
+- **Spike** : momentary high voltage
+- **Surge** : prolonged high voltage
+
+**Power loss**
+- **Fault** : momentary loss of power
+- **Blackout**
+
+**Power degradation**
+- **Sag/dip** : momentary low voltage
+- **Brownout** : prolonged low voltage
+- **Inrush current** : initial surge of power
+
+&nbsp;
+
+### **5.5.14 - Managing threats to physical facilities**
+
+Organizations can implement various measures to manage threats to the physical facilities. For example:
+
+- Access Control and Closed-Circuit TV (CCTV - Video Surveillance) coverage at all entrances.
+- Policies and procedures for guests visiting the facility.
+- Building security testing, including using both digital and physical means to covertly gain access.
+- Badge encryption for entry access.
+- Disaster recovery planning.
+- Business continuity planning.
+- Regular security awareness training.
+- Asset tagging system.
+
+&nbsp;
+
+## **5.6 - Penetration testing**
+
+&nbsp;
+
+### **5.6.1 - Cyber kill chains**
+
+The kill chain is made up of the various stages of an information systems attack. This way of looking at attacks was developed by Lockheed Martin to provide a security framework for incident detection and response.
+It comprises the following stages :
+- **Reconnaissance**
+- **Weaponization** : The attacker creates an exploit and malicious payload to send to the target.
+- **Delivery** : The attacker sends the exploit and malicious payload to the target, for example by email.
+- **Exploitation** : The exploit is executed
+- **Installation** : A backdoor access point is installed on the target.
+- **Command and control** : Remote control of the target is gained through a command-and-control channel or server taking advantage of the backdoor access.
+- **Action**
+
+To defend against the kill chain, network security defenses are designed around its stages. Questions should be asked about an organization’s security defenses, based on the cyber kill chain:
+
+- What are the attack indicators at each stage of the kill chain?
+- Which security tools are needed to detect the attack indicators at each of these stages?
+- Are there gaps in the company’s ability to detect an attack?
